@@ -8,3 +8,10 @@ branches:
 script:
   - ./node_modules/@angular/cli/bin/ng lint
   - ./node_modules/@angular/cli/bin/ng build --prod --base-href https://t-palmer.github.io/travis-demo/
+
+notifications:
+  email:
+    recipients:
+      - mail@stnimmerlein.de
+    on_success: always # default: change
+    on_failure: always # default: always
