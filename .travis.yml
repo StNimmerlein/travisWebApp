@@ -15,7 +15,7 @@ deploy:
   secret_access_key: $AWS_SECRET_KEY
   bucket: "stnimmerwapp"
   skip_cleanup: true
-  upload-dir: dist/webapp
+  local_dir: dist/webapp
 
 notifications:
   email:
