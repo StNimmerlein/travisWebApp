@@ -6,6 +6,6 @@ branches:
   only:
     - master
 script:
-  - nmp ci
+  - npm ci
   - ./node_modules/@angular/cli/bin/ng lint
   - ./node_modules/@angular/cli/bin/ng build --prod --base-href https://t-palmer.github.io/travis-demo/
