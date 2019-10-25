@@ -1,0 +1,9 @@
+language: node_js
+
+branches:
+  only:
+    - master
+script:
+  - nmp ci
+  - ./node_modules/@angular/cli/bin/ng lint
+  - ./node_modules/@angular/cli/bin/ng build --prod --base-href https://t-palmer.github.io/travis-demo/
