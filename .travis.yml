@@ -1,9 +1,11 @@
 language: node_js
 node_js:
 - '12'
+
 script:
 - "./node_modules/@angular/cli/bin/ng lint"
 - "./node_modules/@angular/cli/bin/ng build --prod --base-href https://stnimmerlein.de/travis/webapp/"
+
 deploy:
   provider: heroku
   api_key:
