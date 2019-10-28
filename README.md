@@ -2,28 +2,25 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
 
-## Development server
+## Deploy to heroku
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+In case of a webapp we need to add a server to the project.
+- Add `express` and `path` to the dependencies (npm i express path --save)
+- Create a `server.js` in the project root similar to the one in this example project
+- Replace the `start` script in the `package.json` by `node server.js`
+- Add the node and npm versions to the `package.json` (see `engines` in this example)
 
-## Code scaffolding
+Create a heroku token:
+- `heroku authorizations:create`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Encrypt this token with travis. In the git project dir:
+- `travis login --pro`
+- `travis encrypt HEROKU_KEY --add deploy.api_key --pro` (this adds the encrypted deploy key to the `.travis.yml`).
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-## Heroku coming soon!
+Add the following lines to the `.travis.yml`:
+```yaml
+deploy:
+  provider: heroku
+  api_key: ...should_already_be_set...
+  app: stnimmerwapp
+```

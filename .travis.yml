@@ -1,17 +1,16 @@
 language: node_js
 node_js:
 - '12'
-
-branches:
-  only:
-  - master
-
 script:
-- ./node_modules/@angular/cli/bin/ng lint
-- ./node_modules/@angular/cli/bin/ng build --prod --base-href https://stnimmerlein.de/travis/webapp/
-
-after_success:
-- scp -o StrictHostKeyChecking=no -r dist/webapp/* root@stnimmerlein.de:/var/www/html/travis/webapp
+- "./node_modules/@angular/cli/bin/ng lint"
+- "./node_modules/@angular/cli/bin/ng build --prod --base-href https://stnimmerlein.de/travis/webapp/"
+deploy:
+  provider: heroku
+  api_key:
+    secure: HS2VtSTepcJ/O1SGSTVQr9yGaG8gu/gjWiAvT3mz82xt/cbJMWU+hTe3h90jxyZIGZkTdbhsZS6cIuiv+7N0Ocgv5E7jD28/Q3+hYQtgC9BlDroVyx82h/H5bp5y4skhh7K5GpEwGq/aOYVNrL6g62eSl4bGVi/lcYIY5WrLgue/hZJOL2hYn26U/rOXd5PiLQsKBSQq57PvfK4w8QYzqeEzKxqSb68fi4UUUZQfTchgv4ZiOAhb30vfc1z1vPnCIiS7g0gUcDaJAfZQcBWhQQWfjCDNsMmNVSMS3qIxi6YCAQpQQ9Hr5ktc7gsaWfN6+tH0g/BU3b5pnmzSKTnJqQOIf70TnXnQ6O7/afeYZ9CNUTwz5fC04e6tJBSrO5yoNXKfiFOnkniylUqpT/pAf3Oc7HwBOlRSLWEppYOZF/dZU8nvYfGLUMD86oQKSWpya/9uedSJNf+SOb+UbAGvg4OIdD5o4GJ8cYyO2DcQ8oeIbLgjBT1nCD1WEWZG/FNvWhA9CmkyQZcMSRb8YSqE6zrZy95QLUQwmrlhIL1AfsPWXzE8cn9Jo4ckJ/NwlZN6bucwBhSUGgeQL2kWEJo9o6e2iHrDOAnQX5EmBll0X4Xp5QwIQJp1hcORVGfqj1g1A8gOmv+f5sgDit4wHwi1WEQyWiI13b90hxXmFVO5rNo=
+  app: stnimmerwapp
+  on:
+    all_branches: true
 
 notifications:
   email:
@@ -19,10 +18,3 @@ notifications:
     - mail@stnimmerlein.de
     on_success: change
     on_failure: always
-
-before_install:
-- eval "$(ssh-agent -s)"
-- openssl aes-256-cbc -K $encrypted_229ae95ad2c9_key -iv $encrypted_229ae95ad2c9_iv
-  -in deploy-key.enc -out ./deploy-key -d
-- chmod 400 ./deploy-key
-- ssh-add ./deploy-key
