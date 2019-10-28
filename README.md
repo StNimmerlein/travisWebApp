@@ -28,3 +28,19 @@
     }
     ```
   Replace `BUCKET_NAME` and `PRINCIPAL_ID` with your respective values. The latter one can be your AWS Account ID. In this example project I chose `179261888537` as `PRINCIPAL_ID` and `stnimmerwapp` as `BUCKET_NAME`.
+- If not already done, create a new AWS Access Key (Access Key and Secret Key).
+- In Travis, open the Project and add a new secret environment variable (found in Settings).
+- Add the following section to your `.travis.yml`:
+   ```yaml
+    deploy:
+      provider: s3
+      access_key_id: ACCESS_KEY
+      secret_access_key: $AWS_SECRET_KEY
+      bucket: BUCKET_NAME
+      skip_cleanup: true
+      acl: public_read
+      local_dir: dist/webapp
+    ```
+  Replace `ACCESS_KEY` with your Access Key and `BUCKET_NAME` with your bucket name.
+  - `local_dir` refers to the local directory which content is synced to the bucket. Adapt it to the respective output directory of your project. If this value is left out the whole working directory will by synchronized.
+  - By default the deployment is only enabled for the master branch. To enable it for other branches add an `on` section (see `.travis.yml` in this example). 
