@@ -9,7 +9,8 @@ branches:
 script:
 - ./node_modules/@angular/cli/bin/ng lint
 - ./node_modules/@angular/cli/bin/ng build --prod --base-href https://stnimmerlein.de/travis/webapp/
-# Deploy
+
+after_success:
 - scp -o StrictHostKeyChecking=no -r dist/webapp/* root@stnimmerlein.de:/var/www/html/travis/webapp 
 
 notifications:
