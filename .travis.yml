@@ -10,7 +10,7 @@ script:
 - ./node_modules/@angular/cli/bin/ng lint
 - ./node_modules/@angular/cli/bin/ng build --prod --base-href https://stnimmerlein.de/travis/webapp/
 # Deploy
-- scp -r dist/webapp root@stnimmerlein.de:/var/www/html/travis/webapp
+- scp -o StrictHostKeyChecking=no -r dist/webapp root@stnimmerlein.de:/var/www/html/travis/webapp 
 
 notifications:
   email:
