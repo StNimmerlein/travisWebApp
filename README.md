@@ -29,7 +29,7 @@
     ```
   Replace `BUCKET_NAME` and `PRINCIPAL_ID` with your respective values. The latter one can be your AWS Account ID. In this example project I chose `179261888537` as `PRINCIPAL_ID` and `stnimmerwapp` as `BUCKET_NAME`.
 - If not already done, create a new AWS Access Key (Access Key and Secret Key).
-- In Travis, open the Project and add a new secret environment variable (found in Settings).
+- In Travis, open the Project and add a new secret environment variable (found in Settings) called `AWS_SECRET_KEY` and enter your secret key.
 - Add the following section to your `.travis.yml`:
    ```yaml
     deploy:
