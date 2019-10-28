@@ -4,7 +4,7 @@ node_js:
 
 script:
 - ./node_modules/@angular/cli/bin/ng lint
-- ./node_modules/@angular/cli/bin/ng build --prod --base-href https://stnimmerlein.de/travis/webapp/
+- ./node_modules/@angular/cli/bin/ng build --prod
 
 deploy:
   provider: s3
