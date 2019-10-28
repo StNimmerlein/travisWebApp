@@ -11,13 +11,13 @@ script:
 - ./node_modules/@angular/cli/bin/ng build --prod --base-href https://stnimmerlein.de/travis/webapp/
 
 after_success:
-- scp -o StrictHostKeyChecking=no -r dist/webapp/* root@stnimmerlein.de:/var/www/html/travis/webapp 
+- scp -o StrictHostKeyChecking=no -r dist/webapp/* root@stnimmerlein.de:/var/www/html/travis/webapp
 
 notifications:
   email:
     recipients:
     - mail@stnimmerlein.de
-    on_success: always
+    on_success: change
     on_failure: always
 
 before_install:
