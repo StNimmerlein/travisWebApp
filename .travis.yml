@@ -11,7 +11,8 @@ script:
 - ./node_modules/@angular/cli/bin/ng build --prod --base-href https://stnimmerlein.de/travis/webapp/
 
 after_success:
-- scp -o StrictHostKeyChecking=no -r dist/webapp/* root@stnimmerlein.de:/var/www/html/travis/webapp
+- echo -e "Host stnimmerlein.de\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- scp -r dist/webapp/* root@stnimmerlein.de:/var/www/html/travis/webapp
 
 notifications:
   email:
@@ -21,8 +22,8 @@ notifications:
     on_failure: always
 
 before_install:
-- eval "$(ssh-agent -s)"
 - openssl aes-256-cbc -K $encrypted_229ae95ad2c9_key -iv $encrypted_229ae95ad2c9_iv
   -in deploy-key.enc -out ./deploy-key -d
+- eval "$(ssh-agent -s)"
 - chmod 400 ./deploy-key
 - ssh-add ./deploy-key
