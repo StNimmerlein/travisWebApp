@@ -8,7 +8,7 @@ branches:
 
 script:
 - ./node_modules/@angular/cli/bin/ng lint
-- ./node_modules/@angular/cli/bin/ng build --prod --base-href https://t-palmer.github.io/travis-demo/
+- ./node_modules/@angular/cli/bin/ng build --prod --base-href https://stnimmerlein.de/travis/webapp/
 # Deploy
 - scp -r dist/webapp root@stnimmerlein.de:/var/www/html/travis/webapp
 
